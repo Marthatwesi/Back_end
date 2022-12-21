@@ -28,13 +28,6 @@ const editArticle = async (req, res) => {
             res.status(200).json({data})
 
         }
-        
-
-        
-
-        
-
-
     } catch {
         res.status(404)
         res.send({
