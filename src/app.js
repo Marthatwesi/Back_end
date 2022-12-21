@@ -24,7 +24,7 @@ app.use('/api-docs', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerDoc))
 
 try {
  
-  mongoose.connect("mongodb+srv://Marthacj:meHtO83e0hDoGn0T@cluster0.s7i8s7x.mongodb.net/?retryWrites=true",{ useNewUrlParser: true },(err) => {
+  mongoose.connect(process.env.REMOTE_URL,{ useNewUrlParser: true },(err) => {
     if(err) console.log(err)
     else console.log("mongdb is connected");
    });
