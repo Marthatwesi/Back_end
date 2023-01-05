@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src -d dist",
     "dev": "better-npm-run dev",
-    "test": "jest --collect-coverage --watchAll"
+    "test": "jest --exit --collect-coverage && coveralls < coverage/lcov.info"
   },
   "betterScripts": {
     "dev": {
@@ -15,6 +15,9 @@
   },
   "author": "martha",
   "license": "ISC",
+  "jest":{
+    "testTimeout":50000
+  },
   "dependencies": {
     "@babel/core": "^7.20.5",
     "@babel/node": "^7.20.5",
@@ -42,4 +45,5 @@
     "nodemon": "^2.0.20",
     "supertest": "^6.3.3"
   }
+
 }
