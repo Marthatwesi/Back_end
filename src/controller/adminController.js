@@ -8,7 +8,6 @@ const AdminsignUp =async (req, res)=> {
     const passwordHashValue = await bcrypt.genSalt(10);
     const passwordHashed =  await bcrypt.hash(req.body.password, passwordHashValue);
 
-    
 
     const userSignUp = new exportAdmin({
         name:req.body.name,

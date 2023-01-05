@@ -6,10 +6,10 @@ import likesRoutes from "../routes/api/likesRoutes"
 
 const routes = express.Router();
 
+
 routes.use("/articles", articleRoutes);
 routes.use("/messages", messageRoutes);
 routes.use("/articles", commentRoutes);
-routes.use("/messages", messageRoutes);
 routes.use("/articles", likesRoutes);
 // routes.use("/users")
 

@@ -5,8 +5,8 @@ const validateForm = (schema) => (payload) => schema.validate(payload, {
 })
 
 const articleSchema = Joi.object({
-    title: Joi.string().required().min(1).trim(),
-    content: Joi.string().required().min(5).trim(),
+    title: Joi.string().min(1).trim().required(),
+    content: Joi.string().min(5).trim().required(),
     image: Joi.string().required(),
 })
 

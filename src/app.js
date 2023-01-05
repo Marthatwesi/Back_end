@@ -14,19 +14,22 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 
-const port = process.env.PORT || 4000;
 
 try {
  
-  mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+  mongoose.connect("mongodb+srv://Marthacj:meHtO83e0hDoGn0T@cluster0.s7i8s7x.mongodb.net/?retryWrites=true",{ useNewUrlParser: true },(err) => {
+    if(err) console.log(err)
+    else console.log("mongdb is connected");
+   });
+
 
   app.use("/api", routes);
   app.use("/user", authRoutes);
   app.use("*", (req, res) => {
     res.status(404).json({ error: "RESOURCE NOT FOUND" });
   });
-  app.listen(port, () => {
-    console.log(`The server is running on port ${port}`);
+  app.listen(process.env.PORT, () => {
+    console.log(`The server is running on port ${process.env.PORT}`);
   });
 } catch (error) {
   console.log(error);

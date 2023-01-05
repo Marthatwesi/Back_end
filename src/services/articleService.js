@@ -1,12 +1,18 @@
+import { ArticleController } from "../controller/articleController";
 import Article from "../model/article";
 
 export class ArticleServices {
   static async createArticle(data) {
-    const exists = Article.findOne({title:data.title})
+    const {
+      title, content, image
+    } = data
+    const exists = await  Article.findOne({title:title})
     if (exists){
       return "exists"
     }
-    return await data.save();
+    const dataArticle = new Article (data)
+    await dataArticle.save();
+    return dataArticle;
   }
   static async getAllArticles() {
     const articles = await Article.find();
