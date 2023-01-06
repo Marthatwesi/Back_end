@@ -12,7 +12,7 @@ test("this is supoosed to send a message", async () => {
       email: "martha123@gmail.com",
       message: "do tests hdjdgvyg tycbkejncksdgy"
     });
-    expect(response.statusCode).toBe(500);
+    expect(response.statusCode).toBe(200);
   });
 
   test("validationError 400 should  be returned ", async () => {
