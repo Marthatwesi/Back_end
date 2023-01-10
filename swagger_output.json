@@ -1,0 +1,590 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": "REST API Documentation"
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Articles",
+      "description": "All Article Endpoints"
+    },
+    {
+      "name": "Messages",
+      "description": "All messages Endpoints"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "The Authorization Token Needed To Get Access To The Protected Endpoints"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/articles": {
+      "post": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "Create/Post Article",
+        "description": "Admin Creates a Article",
+        "parameters": [
+          {
+            "name": "Article",
+            "in": "body",
+            "description": "Necessary Article Details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "gets Articles",
+        "description": "client gets all Articles",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/articles/{id}": {
+      "get": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "views one Article",
+        "description": "Client view one Article",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Article",
+            "in": "body",
+            "description": "Necessary Article Details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "Deletes Article",
+        "description": "Admin Creates a Article",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "Edits Article",
+        "description": "Admin Creates a Article",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Article",
+            "in": "body",
+            "description": "Necessary Article Details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "responses": {},
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/signup": {
+      "post": {
+        "tags": [
+          "Signup"
+        ],
+        "summary": "Sign up",
+        "description": "client or admin signs up",
+        "parameters": [
+          {
+            "name": "Signup",
+            "in": "body",
+            "description": "signup details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Signup"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Login",
+        "description": "client or admin logs in",
+        "parameters": [
+          {
+            "name": "Login",
+            "in": "body",
+            "description": "login details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/admin": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Login/signup",
+        "description": "admin signs up",
+        "parameters": [
+          {
+            "name": "Admin",
+            "in": "body",
+            "description": "login details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Admin"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/articles/{id}/comment": {
+      "post": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "comment",
+        "description": "client comments an article",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Articles",
+            "in": "body",
+            "description": "Posts comment",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Comment"
+            }
+          }
+        ],
+        "responses": {},
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "Get comments",
+        "description": "Admin comments an article",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/articles/{id}/likes": {
+      "post": {
+        "tags": [
+          "Articles"
+        ],
+        "summary": "likes article",
+        "description": "client likes an article",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Articles",
+            "in": "body",
+            "description": "likes",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Articles"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/messages": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "send Message",
+        "description": "client sends a message",
+        "parameters": [
+          {
+            "name": "Messages",
+            "in": "body",
+            "description": "message",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "gets Messages",
+        "description": "admin gets all messages",
+        "parameters": [
+          {
+            "name": "Messages",
+            "in": "body",
+            "description": "message",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/messages/{id}": {
+      "delete": {
+        "tags": [
+          "Messages"
+        ],
+        "summary": "delete Message",
+        "description": "Admin deletes a message",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Messages",
+            "in": "body",
+            "description": "message",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Messages"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Article": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "First article"
+        },
+        "content": {
+          "type": "string",
+          "example": "People in Tech"
+        },
+        "image": {
+          "type": "string",
+          "example": "data:image/jpeg;base64..."
+        },
+        "comment": {
+          "type": "string",
+          "example": "This is a dope article."
+        }
+      },
+      "required": [
+        "title",
+        "content",
+        "image"
+      ]
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "comment": {
+          "type": "string",
+          "example": "dope"
+        }
+      },
+      "required": [
+        "comment"
+      ]
+    },
+    "Contact": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "string",
+          "example": "Kawnguzi Tevin"
+        },
+        "email": {
+          "type": "string",
+          "example": "tevin@gmail.com"
+        },
+        "subject": {
+          "type": "string",
+          "example": "Next project plan"
+        },
+        "message": {
+          "type": "string",
+          "example": "how about we discuss about the next project"
+        }
+      },
+      "required": [
+        "names",
+        "email",
+        "message"
+      ]
+    },
+    "Signup": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Marvvv Twesigye"
+        },
+        "email": {
+          "type": "string",
+          "example": "marvtwesi@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "********"
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "password"
+      ]
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "marvtwesi@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "********"
+        }
+      },
+      "required": [
+        "email",
+        "password"
+      ]
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
