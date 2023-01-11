@@ -38,8 +38,6 @@ test("this is supoosed to send a message", async () => {
     expect(response.statusCode).toBe(200);
   });
 
-
-
 test("this is supoosed to signup a new user", async () => {
   const response = await request(app).post("/user/signup").set("Authorization", tokenId).send({
     name: "Martha",
@@ -48,15 +46,24 @@ test("this is supoosed to signup a new user", async () => {
   });
   expect(response.statusCode).toBe(400);
 });
+test("this is supoosed to signup a new user", async () => {
+  const response = await request(app).post("/user/signup").set("Authorization", tokenId).send({
+    name: "Martha",
+    email: "martha"+randomNo+"@gmail.com",
+    password: "marvoe19"
+  });
+  expect(response.statusCode).toBe(200);
+});
 
 test("this is supoosed to signup an admin user", async () => {
   const response = await request(app).post("/user/admin").set("Authorization", tokenId).send({
   name:"MAARTHA1",
-  email:"marthacaj1@gmail.com",
+  email:"martha"+randomNo+"@gmail.com",
   password:"this1233"
   });
-  expect(response.statusCode).toBe(409);
+  expect(response.statusCode).toBe(200);
 });
+
 
 test("this is supoosed to login a new user", async () => {
   const response = await request(app).post("/user/login").set("Authorization", tokenId).send({
