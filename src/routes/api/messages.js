@@ -7,7 +7,7 @@ authenticateMyToken();
 
 const route = express.Router();
 
-route.post("/messages", MessagesController.sendMessage,()=>{
+route.post("/api/messages", MessagesController.sendMessage,()=>{
 // #swagger.tags = ['Messages']
 // #swagger.description = 'client sends a message'
 // #swagger.summary = 'send Message'
@@ -19,7 +19,7 @@ route.post("/messages", MessagesController.sendMessage,()=>{
   } */
 
 });
-route.get("/messages",passport.authenticate('jwt', { session: false }), MessagesController.viewMessage,()=>{
+route.get("/api/messages",passport.authenticate('jwt', { session: false }), MessagesController.viewMessage,()=>{
     // #swagger.tags = ['Messages']
     // #swagger.description = 'admin gets all messages'
     // #swagger.summary = 'gets Messages'
@@ -33,7 +33,7 @@ route.get("/messages",passport.authenticate('jwt', { session: false }), Messages
         "apiKeyAuth": []
   }] */
     });
-route.delete("/messages/:id",passport.authenticate('jwt', { session: false }), MessagesController.deleteMessage,()=>{
+route.delete("/api/messages/:id",passport.authenticate('jwt', { session: false }), MessagesController.deleteMessage,()=>{
     // #swagger.tags = ['Messages']
     // #swagger.description = 'Admin deletes a message'
     // #swagger.summary = 'delete Message'

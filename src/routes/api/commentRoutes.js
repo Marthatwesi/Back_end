@@ -5,7 +5,7 @@ import getAllComments from "../../controller/getComment";
 import likesCommentsMid from "../../middlewares/validationForms/likesCommentsMid";
 
 const route = express.Router();
- route.post("/articles/:id/comment",likesCommentsMid,sendComment,()=>{
+ route.post("/api/articles/:id/comment",likesCommentsMid,sendComment,()=>{
     // #swagger.tags = ['Articles']
     // #swagger.description = 'client comments an article'
     // #swagger.summary = 'comment'
@@ -19,7 +19,7 @@ const route = express.Router();
         "apiKeyAuth": []
   }] */
  })
- route.get("/articles/:id/comment",getAllComments,()=>{
+ route.get("/api/articles/:id/comment",getAllComments,()=>{
     // #swagger.tags = ['Articles']
     // #swagger.description = 'Admin comments an article'
     // #swagger.summary = 'Get comments'

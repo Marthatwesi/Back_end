@@ -3,7 +3,7 @@ import articleRoutes from "../routes/api/articleRoutes";
 import messageRoutes from "../routes/api/messages";
 import commentRoutes from "../routes/api/commentRoutes"
 import likesRoutes from "../routes/api/likesRoutes"
-import swaggerDoc from "../../swagger_output.json" assert{type:"json"}
+import swaggerDoc from "../../swagger"
 import swaggerUiExpress from "swagger-ui-express"
 
 const routes = express.Router();

@@ -4,7 +4,7 @@ import likesCommentsMid from "../../middlewares/validationForms/likesCommentsMid
 
 
 const route = express.Router();
-route.post("/articles/:id/likes",likesCommentsMid,likesController.hearts,()=>{
+route.post("/api/articles/:id/likes",likesCommentsMid,likesController.hearts,()=>{
     // #swagger.tags = ['Articles']
     // #swagger.description = 'client likes an article'
     // #swagger.summary = 'likes article'

@@ -3,14 +3,13 @@ import express from "express";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import "dotenv/config";
-import routes from "./routes";
 import passport from "passport";
 import articleRoutes from "./routes/api/articleRoutes";
 import messageRoutes from "./routes/api/messages";
 import commentRoutes from "./routes/api/commentRoutes"
 import likesRoutes from "./routes/api/likesRoutes"
 import authRoutes from './routes/api/authRoutes'
-import swaggerDoc from "../swagger_output.json" assert{type:"json"}
+import swaggerDoc from "../swagger"
 import swaggerUiExpress from "swagger-ui-express"
 
 const secureRoute = "./secure-routes";
@@ -31,10 +30,10 @@ try {
 
 
   
-  app.use("/api", articleRoutes);
-  app.use("/api", messageRoutes);
-  app.use("/api", commentRoutes);
-  app.use("/api", likesRoutes);
+  app.use("/", articleRoutes);
+  app.use("/", messageRoutes);
+  app.use("/", commentRoutes);
+  app.use("/", likesRoutes);
   app.use("/user", authRoutes);
   app.use("*", (req, res) => {
     res.status(404).json({ error: "RESOURCE NOT FOUND" });

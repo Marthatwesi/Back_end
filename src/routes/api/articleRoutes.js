@@ -9,7 +9,7 @@ import validateAdmin from "../../middlewares/validationForms/adminValidation";
 authenticateMyToken();
 const route = express.Router();
 
-route.post("/articles",validateAdmin,passport.authenticate('jwt', { session: false }),ArticleController.createArticle,()=>{
+route.post("/api/articles",validateAdmin,passport.authenticate('jwt', { session: false }),ArticleController.createArticle,()=>{
 
 // #swagger.tags = ['Articles']
 // #swagger.description = 'Admin Creates a Article'
@@ -24,7 +24,7 @@ route.post("/articles",validateAdmin,passport.authenticate('jwt', { session: fal
         "apiKeyAuth": []
   }] */
 });
-route.get("/articles", ArticleController.viewArticle,()=>{
+route.get("/api/articles", ArticleController.viewArticle,()=>{
 
   // #swagger.tags = ['Articles']
   // #swagger.description = 'client gets all Articles'
@@ -33,7 +33,7 @@ route.get("/articles", ArticleController.viewArticle,()=>{
           "apiKeyAuth": []
     }] */
   });
-route.get("/articles/:id",ArticleController.viewOneArticle,()=>{
+route.get("/api/articles/:id",ArticleController.viewOneArticle,()=>{
 
   // #swagger.tags = ['Articles']
   // #swagger.description = 'Client view one Article'
@@ -51,7 +51,7 @@ route.get("/articles/:id",ArticleController.viewOneArticle,()=>{
 
 
 
-route.delete("/articles/:id", validateAdmin,passport.authenticate('jwt', { session: false }),ArticleController.deleteArticle,()=>{
+route.delete("/api/articles/:id", validateAdmin,passport.authenticate('jwt', { session: false }),ArticleController.deleteArticle,()=>{
 // #swagger.tags = ['Articles']
 // #swagger.description = 'Admin Creates a Article'
 // #swagger.summary = 'Deletes Article'
@@ -59,7 +59,7 @@ route.delete("/articles/:id", validateAdmin,passport.authenticate('jwt', { sessi
         "apiKeyAuth": []
   }] */
 });
-route.put("/articles/:id", validateAdmin, passport.authenticate('jwt', { session: false }) ,editArticle,()=>{
+route.put("/api/articles/:id", validateAdmin, passport.authenticate('jwt', { session: false }) ,editArticle,()=>{
 // #swagger.tags = ['Articles']
 // #swagger.description = 'Admin Creates a Article'
 // #swagger.summary = 'Edits Article'
