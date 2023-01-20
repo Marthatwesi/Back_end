@@ -9,16 +9,7 @@ const articleSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
-  },
+  image: String,
   likes:{
     numberLikes:{type:Number, default:0},
     clients:[]
@@ -35,7 +26,7 @@ const articleSchema = mongoose.Schema({
   }, ],
   created_on: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
 });
 

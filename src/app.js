@@ -11,14 +11,15 @@ import likesRoutes from "./routes/api/likesRoutes"
 import authRoutes from './routes/api/authRoutes'
 import swaggerDoc from "../swagger"
 import swaggerUiExpress from "swagger-ui-express"
+import cors from "cors"
+
 
 const secureRoute = "./secure-routes";
-
 const app = express();
-app.use(express.json());
+app.use(express.json({limit:"500mb"}));
 app.use(morgan("dev"));
 app.use('/api-docs', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerDoc));
-
+app.use(cors({origin:"*"}))
 
 
 try {
@@ -28,8 +29,6 @@ try {
     else console.log("mongdb is connected");
    });
 
-
-  
   app.use("/", articleRoutes);
   app.use("/", messageRoutes);
   app.use("/", commentRoutes);

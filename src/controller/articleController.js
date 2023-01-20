@@ -1,7 +1,7 @@
 import { validateArticle } from "../middlewares/validationForms/articleValidation";
 import Article from "../model/article";
 import { ArticleServices } from "../services/articleService";
-import cloudinary from "../cloudinary";
+
 
 
 export class ArticleController {
@@ -15,21 +15,19 @@ export class ArticleController {
 
       }))}else{
         
-          const { title, content, image } = req.body;
-          const imageUpload = await cloudinary.uploader.upload(image, {
-            folder: "My_Cloudinary_Folder",
-          })
+          const { title, content } = req.body;
+          
           const data = {
             title,
             content,
-            image:  {public_id: imageUpload.public_id, url:imageUpload.secure_url},
+            image: req.file.path,
             created_on: new Date(),
           };
           const article = await ArticleServices.createArticle(data);
           if(article == "exists"){
-            res.status(409).json({Error:"Article already exists"})
+            return res.status(409).json({Error:"Article already exists"})
           }
-          res.status(200).json({ message: "Article created successfully", data: article });
+          return res.status(200).json({ message: "Article created successfully", data: article });
         }
     } 
     catch (error) {
