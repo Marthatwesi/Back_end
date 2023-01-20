@@ -1,33 +1,37 @@
 import Article from "../model/article";
-import cloudinary from "../cloudinary";
-import { validateArticle } from "../middlewares/validationForms/articleValidation";
+import { updateArticle } from "../middlewares/validationForms/articleValidation";
+
 const editArticle = async (req, res) => {
     try {
-        const {
-            title,
-            content,
-            image
-        } = req.body;
-        let d = {
-            title,content,image
-        }
-        const {error} = validateArticle(d)
+        const {error} = updateArticle(req.body)
         if(error){
-            res.status(400).json({error:error.details[0].message})
+           res.status(400).json({error:error.details[0].message})
         }else{
-            const imgResult = await cloudinary.uploader.upload(image, {
-                folder: "my_brand_cloudinary"
-            })
-            const data = {
-                title,content,image:{
-                    public_id: imgResult.public_id,url: imgResult.secure_url
+            if(req.body.title){
+                await Article.findOneAndUpdate({_id: req.params.id},{
+                  title:req.body.title,
+                   date:new Date()
+        
+                })
                 }
-            }
-            await Article.findOneAndUpdate({_id: req.params.id})
-
-            res.status(200).json({data})
-
+                if(req.body.content){
+                    await Article.findOneAndUpdate({_id: req.params.id},{
+                        content:req.body.content , 
+                        date:new Date() 
+                      })
+                }
+                if(req.file){
+                    await Article.findOneAndUpdate({_id: req.params.id},{
+                        image:req.file.path,
+                        date:new Date()
+                      })
+                }
+                console.log(req.body)
+                res.status(200).json({
+                    message:"Article updated"
+                })
         }
+        
     } catch {
         res.status(404)
         res.send({

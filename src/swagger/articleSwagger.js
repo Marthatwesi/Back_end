@@ -69,7 +69,7 @@
 
 /**
  * @swagger
- * /api/articles:
+ * /articles:
  *   get:
  *     tags:
  *       - articles
@@ -87,7 +87,7 @@
 
 /**
  * @swagger
- * /api/articles/{articleId}:
+ * /articles/{articleId}:
  *   get:
  *     tags:
  *       - articles
@@ -106,10 +106,6 @@
  *     responses:
  *       '200':
  *         description: successful operation
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/article'
  *       '500':
  *         description: Internal server error
  */
@@ -118,7 +114,7 @@
 // 
 /**
  * @swagger
- * /api/articles/{articleId}/comments:
+ * /articles/{articleId}/comment:
  *  get:
  *     tags:
  *       - articles
@@ -144,7 +140,7 @@
 // 
 /**
  * @swagger
- * /api/articles/{articleId}/likes:
+ * /articles/{articleId}/likes:
  *  get:
  *     tags:
  *       - articles
@@ -171,7 +167,7 @@
 
 /**
  * @swagger
- * /api/articles:
+ * /articles:
  *   post:
  *     tags:
  *       - articles
@@ -181,7 +177,7 @@
  *     requestBody:
  *       description: Create a new article
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *              type: object
  *              properties:
@@ -193,7 +189,7 @@
  *                  example: article content should be string of any size
  *                image:
  *                  type: string
- *                  format: dataurl
+ *                  format: binary
  *                  example: data:img:png...
  *       required: true
  *     responses:
@@ -212,8 +208,8 @@
 
 /**
  * @swagger
- * /api/articles/{articleId}:
- *   put:
+ * /articles/{articleId}:
+ *   patch:
  *     tags:
  *       - articles
  *     summary: Update article
@@ -231,7 +227,7 @@
  *     requestBody:
  *       description: Update article
  *       content:
- *         application/json:
+ *         multipart/form-data:
  *           schema:
  *              type: object
  *              properties:
@@ -243,7 +239,7 @@
  *                  example: article content should be string of any size
  *                image:
  *                  type: string
- *                  format: dataurl
+ *                  format: binary
  *                  example: data:img:png...
  *
  *       required: true
@@ -263,7 +259,7 @@
 
 /**
  * @swagger
- * /api/articles/{articleId}:
+ * /articles/{articleId}:
  *  delete:
  *     tags:
  *       - articles
@@ -295,7 +291,7 @@
 
 /**
  * @swagger
- * /api/articles/{articleId}/comments:
+ * /articles/{articleId}/comment:
  *   post:
  *     tags:
  *       - articles
@@ -309,7 +305,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               message:
+ *               comment:
  *                 type: string
  *                 example: first swagger comment
  *       required: true
@@ -336,7 +332,7 @@
 
 /**
  * @swagger
- * /api/articles/{articleId}/like:
+ * /articles/{articleId}/like:
  *   post:
  *     tags:
  *       - articles

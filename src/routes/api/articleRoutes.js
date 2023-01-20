@@ -4,12 +4,13 @@ import editArticle from "../../controller/editArticleController";
 import authenticateMyToken from "../../auth/passAuth";
 import passport from "passport";
 import validateAdmin from "../../middlewares/validationForms/adminValidation";
+import upload from "../../helpers/multer";
 
 
 authenticateMyToken();
 const route = express.Router();
 
-route.post("/api/articles",validateAdmin,passport.authenticate('jwt', { session: false }),ArticleController.createArticle,()=>{
+route.post("/articles",validateAdmin,passport.authenticate('jwt', { session: false }),upload.single("image"),ArticleController.createArticle,()=>{
 
 // #swagger.tags = ['Articles']
 // #swagger.description = 'Admin Creates a Article'
@@ -24,7 +25,7 @@ route.post("/api/articles",validateAdmin,passport.authenticate('jwt', { session:
         "apiKeyAuth": []
   }] */
 });
-route.get("/api/articles", ArticleController.viewArticle,()=>{
+route.get("/articles", ArticleController.viewArticle,()=>{
 
   // #swagger.tags = ['Articles']
   // #swagger.description = 'client gets all Articles'
@@ -33,7 +34,7 @@ route.get("/api/articles", ArticleController.viewArticle,()=>{
           "apiKeyAuth": []
     }] */
   });
-route.get("/api/articles/:id",ArticleController.viewOneArticle,()=>{
+route.get("/articles/:id",ArticleController.viewOneArticle,()=>{
 
   // #swagger.tags = ['Articles']
   // #swagger.description = 'Client view one Article'
@@ -51,7 +52,7 @@ route.get("/api/articles/:id",ArticleController.viewOneArticle,()=>{
 
 
 
-route.delete("/api/articles/:id", validateAdmin,passport.authenticate('jwt', { session: false }),ArticleController.deleteArticle,()=>{
+route.delete("/articles/:id", validateAdmin,passport.authenticate('jwt', { session: false }),ArticleController.deleteArticle,()=>{
 // #swagger.tags = ['Articles']
 // #swagger.description = 'Admin Creates a Article'
 // #swagger.summary = 'Deletes Article'
@@ -59,7 +60,7 @@ route.delete("/api/articles/:id", validateAdmin,passport.authenticate('jwt', { s
         "apiKeyAuth": []
   }] */
 });
-route.put("/api/articles/:id", validateAdmin, passport.authenticate('jwt', { session: false }) ,editArticle,()=>{
+route.patch("/articles/:id",validateAdmin,passport.authenticate('jwt', { session: false }),upload.single("image"),editArticle,()=>{
 // #swagger.tags = ['Articles']
 // #swagger.description = 'Admin Creates a Article'
 // #swagger.summary = 'Edits Article'

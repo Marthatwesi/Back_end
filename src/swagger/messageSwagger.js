@@ -18,7 +18,7 @@
  *
  *
  * @swagger
- * /api/messages:
+ * /messages:
  *   post:
  *     tags:
  *       -  Messages
@@ -57,7 +57,7 @@
 
 /**
  * @swagger
- * /api/messages:
+ * /messages:
  *    get:
  *       tags:
  *         -  Messages
@@ -81,7 +81,7 @@
 
 /**
  * @swagger
- * /api/messages/{messageId}:
+ * /messages/{messageId}:
  *    get:
  *       tags:
  *         -  Messages
