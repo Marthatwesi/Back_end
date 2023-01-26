@@ -29,7 +29,7 @@
 
 ```sh
 $ git clone https://github.com/Marthatwesi/Back_end.git
-$ cd bcp
+$ cd Back_end
 $ npm install
 ```
 
